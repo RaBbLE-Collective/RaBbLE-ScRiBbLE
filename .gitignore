@@ -1,0 +1,19 @@
+# ── OS / editor noise ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+
+# ── wrangler files ─────────────────────────────────────────────────────
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
+
+# ── AI tooling — local only, created by sync-symlinks spell ──────────
+CLAUDE.md
+CODEX.md
+GEMINI.md
+.claude/

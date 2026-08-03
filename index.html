@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>ScRiBbLE — RaBbLE</title>
+<meta name="description" content="ScRiBbLE: an infinite neon whiteboard for ink and text. Part of the RaBbLE Collective.">
+<meta name="theme-color" content="#0a0010">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ScRiBbLE">
+
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png">
+
+<script src="/scribble/js/RaBbLE-config.js"></script>
+<script src="/scribble/js/RaBbLE-aether-loader.js"></script>
+<script src="/scribble/js/RaBbLE-nebula-loader.js"></script>
+
+<link rel="stylesheet" href="/scribble/css/RaBbLE-scribble.css">
+</head>
+<body>
+
+<div id="app" class="scribble-app" data-tool="pen">
+  <div id="toolbar" class="scribble-toolbar rabble-glass">
+    <span id="entityMark" class="scribble-entity-mark" aria-hidden="true"></span>
+
+    <div class="scribble-swatches" role="group" aria-label="Ink color">
+      <button class="scribble-swatch is-active" data-color="white" style="--sw:#e8e6f0" aria-label="White ink"></button>
+      <button class="scribble-swatch" data-color="violet" style="--sw:#bf5fff" aria-label="Violet ink"></button>
+      <button class="scribble-swatch" data-color="cyan" style="--sw:#00f5ff" aria-label="Cyan ink"></button>
+      <button class="scribble-swatch" data-color="magenta" style="--sw:#ff2d78" aria-label="Magenta ink"></button>
+    </div>
+
+    <div class="scribble-toolbar-spacer"></div>
+
+    <div class="scribble-tools" role="group" aria-label="Tools">
+      <button class="rabble-btn rabble-btn-ghost rabble-btn-sm" data-tool="pen" aria-label="Pen">✎</button>
+      <button class="rabble-btn rabble-btn-ghost rabble-btn-sm" data-tool="eraser" aria-label="Eraser">⌫</button>
+      <button class="rabble-btn rabble-btn-ghost rabble-btn-sm" data-tool="text" aria-label="Text">T</button>
+      <button class="rabble-btn rabble-btn-ghost rabble-btn-sm" id="btnUndo" aria-label="Undo">↺</button>
+      <button class="rabble-btn rabble-btn-ghost rabble-btn-sm" id="btnClear" aria-label="Clear board">✕</button>
+    </div>
+  </div>
+
+  <div id="viewport" class="scribble-viewport">
+    <canvas id="glowCanvas" class="scribble-canvas scribble-canvas--glow" aria-hidden="true"></canvas>
+    <canvas id="flatCanvas" class="scribble-canvas scribble-canvas--flat"></canvas>
+    <div id="textLayer" class="scribble-text-layer"></div>
+  </div>
+</div>
+
+<script src="/scribble/js/RaBbLE-store.js"></script>
+<script src="/scribble/js/RaBbLE-render.js"></script>
+<script src="/scribble/js/RaBbLE-canvas-engine.js"></script>
+<script src="/scribble/js/RaBbLE-text-tool.js"></script>
+<script src="/scribble/js/RaBbLE-toolbar.js"></script>
+<script src="/scribble/js/RaBbLE-app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function (err) {
+        console.warn('[ScRiBbLE] service worker registration failed:', err);
+      });
+    });
+  }
+</script>
+</body>
+</html>

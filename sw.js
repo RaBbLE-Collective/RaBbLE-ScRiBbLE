@@ -5,19 +5,19 @@
  * flight-mode reload still renders using whatever was cached last time).
  * Bump CACHE_NAME on any app-shell change to evict stale entries.
  */
-const CACHE_NAME = 'rabble-scribble-shell-v1';
+const CACHE_NAME = 'rabble-scribble-shell-v2';
 
 const APP_SHELL = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/scribble/css/RaBbLE-scribble.css',
-  '/scribble/js/RaBbLE-canvas-engine.js',
-  '/scribble/js/RaBbLE-render.js',
-  '/scribble/js/RaBbLE-toolbar.js',
-  '/scribble/js/RaBbLE-text-tool.js',
-  '/scribble/js/RaBbLE-store.js',
-  '/scribble/js/RaBbLE-app.js',
+  '/src/css/RaBbLE-scribble.css',
+  '/src/js/RaBbLE-canvas-engine.js',
+  '/src/js/RaBbLE-render.js',
+  '/src/js/RaBbLE-toolbar.js',
+  '/src/js/RaBbLE-text-tool.js',
+  '/src/js/RaBbLE-store.js',
+  '/src/js/RaBbLE-app.js',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
 ];

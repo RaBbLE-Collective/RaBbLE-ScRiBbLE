@@ -17,16 +17,16 @@ RaBbLE-ScRiBbLE is the neon note-taking PWA surface — an infinite whiteboard f
 | `sw.js` | Service worker — offline app-shell cache |
 | `wrangler.jsonc` | Cloudflare Workers deployment config |
 
-**`scribble/` — all app source**
+**`src/` — all app source**
 | Path | What |
 |---|---|
-| `scribble/css/RaBbLE-scribble.css` | Toolbar/canvas chrome — Aether tokens + component classes only, no invented hex |
-| `scribble/js/RaBbLE-canvas-engine.js` | Pointer Events capture (pressure/tilt/pointerType), pan/zoom transform, stroke model, undo stack |
-| `scribble/js/RaBbLE-render.js` | Two-layer glow renderer (flat + CSS-blur canvas), same technique as NeBuLA's `AmbientField` |
-| `scribble/js/RaBbLE-toolbar.js` | Pen/eraser/text/color-swatch/undo/clear controls, built from Aether `.rabble-dock`/`.rabble-btn` classes |
-| `scribble/js/RaBbLE-text-tool.js` | Tap-to-place contentEditable text boxes |
-| `scribble/js/RaBbLE-store.js` | IndexedDB wrapper — single `'default'` board, debounced autosave |
-| `scribble/js/RaBbLE-app.js` | Wire-up/init |
+| `src/css/RaBbLE-scribble.css` | Toolbar/canvas chrome — Aether tokens + component classes only, no invented hex |
+| `src/js/RaBbLE-canvas-engine.js` | Pointer Events capture (pressure/tilt/pointerType), pan/zoom transform, stroke model, undo stack |
+| `src/js/RaBbLE-render.js` | Two-layer glow renderer (flat + CSS-blur canvas), same technique as NeBuLA's `AmbientField` |
+| `src/js/RaBbLE-toolbar.js` | Pen/eraser/text/color-swatch/undo/clear controls, built from Aether `.rabble-dock`/`.rabble-btn` classes |
+| `src/js/RaBbLE-text-tool.js` | Tap-to-place contentEditable text boxes |
+| `src/js/RaBbLE-store.js` | IndexedDB wrapper — single `'default'` board, debounced autosave |
+| `src/js/RaBbLE-app.js` | Wire-up/init |
 
 ## Commits & Branches
 

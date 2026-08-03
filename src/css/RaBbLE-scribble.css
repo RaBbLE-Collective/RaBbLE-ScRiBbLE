@@ -70,8 +70,44 @@ html, body {
   cursor: text;
 }
 
-.scribble-textbox {
+.scribble-textbox-wrap {
   position: absolute;
+  min-width: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.scribble-textbox-wrap.is-dragging {
+  opacity: 0.85;
+}
+
+.scribble-textbox-handle {
+  flex-shrink: 0;
+  cursor: grab;
+  color: var(--rabble-muted, #6b6880);
+  font-size: 0.85em;
+  line-height: 1.3;
+  padding: 2px 1px;
+  user-select: none;
+  touch-action: none;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.scribble-textbox-handle:hover {
+  opacity: 1;
+  color: var(--rabble-cyan);
+}
+
+.scribble-textbox-wrap.is-dragging .scribble-textbox-handle {
+  cursor: grabbing;
+  opacity: 1;
+  color: var(--rabble-cyan);
+}
+
+.scribble-textbox {
+  flex: 1;
   min-width: 40px;
   outline: none;
   white-space: pre-wrap;

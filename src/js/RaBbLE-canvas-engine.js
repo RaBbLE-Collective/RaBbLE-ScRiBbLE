@@ -8,7 +8,10 @@
  * draws (so mouse/trackpad remains fully usable per Mark's ask). Two
  * simultaneous finger touches pan + zoom together (pinch), which also
  * doubles as palm rejection: touch-action:none plus this pointerType
- * split means a resting palm never fights the pencil.
+ * split means a resting palm never fights the pencil. On a device with
+ * no touch digitizer, mouse wheel / trackpad scroll pans, and ctrl/meta
+ * + wheel zooms (see _onWheel) — the pinch gesture above is unreachable
+ * without a touchscreen, so this is desktop's only pan/zoom path.
  *
  * Colors are the RaBbLE-Palette.md core neons, written as literal hex
  * because the canvas 2D API needs concrete color strings — see the
@@ -28,6 +31,15 @@
   var BASE_ERASE_RADIUS = 14;
   var MIN_ZOOM = 0.2;
   var MAX_ZOOM = 6;
+  // Tunable by feel — trackpad "naturalness" is hardware/driver-dependent
+  // (untested on a ProArt P16 trackpad specifically). If pan/zoom feels too
+  // fast or too slow, adjust these two first.
+  var ZOOM_WHEEL_SENSITIVITY = 0.006;
+  var WHEEL_DELTA_CAP = 120;
+
+  function clamp(v, lo, hi) {
+    return Math.max(lo, Math.min(hi, v));
+  }
 
   window.Scribble = window.Scribble || {};
   window.Scribble.COLORS = COLORS;
@@ -65,12 +77,18 @@
     this._onPointerDown = this._onPointerDown.bind(this);
     this._onPointerMove = this._onPointerMove.bind(this);
     this._onPointerUp = this._onPointerUp.bind(this);
+    this._onWheel = this._onWheel.bind(this);
 
     canvas.style.touchAction = 'none';
     canvas.addEventListener('pointerdown', this._onPointerDown);
     canvas.addEventListener('pointermove', this._onPointerMove);
     canvas.addEventListener('pointerup', this._onPointerUp);
     canvas.addEventListener('pointercancel', this._onPointerUp);
+    // Desktop mouse/trackpad — pinch gestures above are touchscreen-only, so
+    // this is the only pan/zoom path available without a touch digitizer.
+    // { passive: false } is required for preventDefault() to actually stop
+    // the browser's own page-zoom/scroll on ctrl+wheel and two-finger scroll.
+    canvas.addEventListener('wheel', this._onWheel, { passive: false });
 
     this._applyCamera();
   }
@@ -236,13 +254,55 @@
       y: (startMidLocal.y - g.startCam.y) / g.startZoom,
     };
 
-    this.camera = {
+    this._commitCamera({
       zoom: newZoom,
       x: mid.x - worldAtStart.x * newZoom,
       y: mid.y - worldAtStart.y * newZoom,
-    };
-    this.board.camera = this.camera;
+    });
+  };
 
+  // Desktop mouse/trackpad pan + zoom — the only pan/zoom path on a device
+  // with no touch digitizer. Plain wheel/two-finger-scroll pans; ctrl/meta+
+  // wheel (how browsers report trackpad pinch, and how "hold ctrl + scroll"
+  // reads on a plain mouse wheel) zooms, anchored under the cursor so the
+  // point you're pointing at stays put — same anchoring math as the touch
+  // pinch gesture above.
+  Engine.prototype._onWheel = function (e) {
+    e.preventDefault();
+    if (this._gesture || this._active) return; // don't fight an active touch/draw gesture
+
+    var rect = this._canvas.getBoundingClientRect();
+    var sx = e.clientX - rect.left, sy = e.clientY - rect.top;
+
+    // Clamp per-event delta before scaling: a precision trackpad sends many
+    // small deltas per second (smooth), but a plain mouse wheel notch or an
+    // OS momentum-scroll tail can spike to 100+ in one event — without this,
+    // that single event would jump the zoom/pan far more than the gesture
+    // that produced it actually meant to.
+    var dx = clamp(e.deltaX, -WHEEL_DELTA_CAP, WHEEL_DELTA_CAP);
+    var dy = clamp(e.deltaY, -WHEEL_DELTA_CAP, WHEEL_DELTA_CAP);
+
+    if (e.ctrlKey || e.metaKey) {
+      var worldAtCursor = this._renderer.screenToWorld(sx, sy);
+      var factor = Math.exp(-dy * ZOOM_WHEEL_SENSITIVITY);
+      var newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, this.camera.zoom * factor));
+      this._commitCamera({
+        zoom: newZoom,
+        x: sx - worldAtCursor.x * newZoom,
+        y: sy - worldAtCursor.y * newZoom,
+      });
+    } else {
+      this._commitCamera({
+        zoom: this.camera.zoom,
+        x: this.camera.x - dx,
+        y: this.camera.y - dy,
+      });
+    }
+  };
+
+  Engine.prototype._commitCamera = function (camera) {
+    this.camera = camera;
+    this.board.camera = camera;
     this._applyCamera();
     this._redraw();
     if (this._onCameraChange) this._onCameraChange(this.camera);

@@ -1,0 +1,15 @@
+.git
+.gitignore
+node_modules
+*.log
+# repo-internal docs, not part of the app (S234)
+AGENT.md
+CLAUDE.md
+CODEX.md
+GEMINI.md
+CONTEXT.md
+README.md
+REFERENCES.md
+.github
+.wrangler
+wrangler*.jsonc

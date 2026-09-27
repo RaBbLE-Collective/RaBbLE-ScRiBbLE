@@ -2,8 +2,9 @@ name: Deploy to Cloudflare Workers
 
 on:
   push:
-    branches: [main]
+    branches: [main, new-horizons]
     tags: ['v*']
+  workflow_dispatch:
 
 jobs:
   deploy-prod:

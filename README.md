@@ -1,6 +1,6 @@
 # RaBbLE-ScRiBbLE
 
-**Live:** [scribble.joinrabble.world](https://scribble.joinrabble.world)
+**Version:** `0.1.0` (Genesis, from `VERSION`) · **Live:** [scribble.joinrabble.world](https://scribble.joinrabble.world) · **Versioning:** [semver, per member](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-Versioning.md)
 
 ```
 spark ~ scribble >> ink meets glow // %SCRIBBLE_ONLINE%
@@ -14,7 +14,7 @@ Neon note-taking PWA — infinite canvas, glow-pen ink + typed text. Built for i
 
 RaBbLE-ScRiBbLE is a thin, no-bundler static PWA — same shape as RaBbLE-World — deployed via Cloudflare Workers. It's where thought gets captured raw, by hand, before it's shaped into anything else. v1 is local-only (IndexedDB): no server, no sync.
 
-This repo is intentionally minimal on `main`. Active development happens on `new-horizons`, matching every other Collective member.
+Development happens on `new-horizons`. `main` is stable: it receives `release/X.Y.Z` branches by pull request and carries the `vX.Y.Z` tags. A push to either branch deploys the live site (`.github/workflows/deploy.yml`).
 
 ---
 

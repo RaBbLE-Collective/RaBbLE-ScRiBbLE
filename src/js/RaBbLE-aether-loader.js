@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var AETHER_URL = window.RABBLE_AETHER_URL || 'https://aether.joinrabble.world/v0.0.0.1-rc.1/aether.min.css';
+  var AETHER_URL = window.RABBLE_AETHER_URL || 'https://aether.joinrabble.world/v0.1.0/aether.min.css';
 
   var link = document.createElement('link');
   link.rel = 'stylesheet';

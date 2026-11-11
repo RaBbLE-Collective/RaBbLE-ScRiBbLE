@@ -8,7 +8,7 @@ epoch: 0 | project: RaBbLE-ScRiBbLE | status: v1 build in progress
 
 A neon note-taking PWA — single infinite canvas, glow-pen ink (concept art: `RaBbLE-BaBbLE/intake/SCriBbLE_Concept_Art.png`) + typed text boxes. iPad + Apple Pencil first, mouse/keyboard fully usable. Local-only (IndexedDB), fully offline. Deploys to `scribble.joinrabble.world`.
 
-This member was deferred in the Grimoire epoch registry ("Mobile PWA — Epoch 1+"); Mark chose to start it ahead of that schedule. Not an EP1 gate — doesn't block Episode 1 air.
+This member was deferred in the Grimoire epoch registry ("Mobile PWA — Epoch 1+"); Mark chose to start it ahead of that schedule. It is on its own release track and gates no other member.
 
 ## Active Work
 

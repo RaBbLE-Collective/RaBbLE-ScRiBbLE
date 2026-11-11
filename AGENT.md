@@ -53,7 +53,7 @@ bash ../RaBbLE-Grimoire/spells/end-session.sh <feature-slug> "<note>"
 
 - **Colors:** use Aether CSS vars (`--rabble-*`) and utility classes only — never raw hex values, except where matching `RaBbLE-Palette.md` values 1:1 inside `RaBbLE-render.js` stroke-color constants (canvas API needs literal color strings).
 - **No bundler, no framework.** Files are opened directly in a browser.
-- **No backend logic here.** v1 is local-only (IndexedDB). Sync/backend is a future-episode concern.
+- **No backend logic here.** v1 is local-only (IndexedDB). Sync/backend is later work.
 - **Brand name casing:** `RaBbLE-ScRiBbLE` — always exact mixed case, two b's (matches `RaBbLE`'s own "Bb" pattern and correct English spelling of "scribble"). The deploy subdomain `scribble.joinrabble.world` uses plain lowercase English — that's expected, not a casing bug.
 - Architecture and roadmap docs live in `../RaBbLE-Grimoire/RaBbLE-ScRiBbLE/` if/when they exist — not in this repo.
 

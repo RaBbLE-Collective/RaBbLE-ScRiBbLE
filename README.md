@@ -35,7 +35,7 @@ This repo is intentionally minimal on `main`. Active development happens on `new
 
 ## Documentation
 
-Architecture and roadmap docs live in **RaBbLE-Grimoire**, not in this repo — see [`RaBbLE-ScRibLE-Overview.md`](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-ScRibLE/RaBbLE-ScRibLE-Overview.md).
+Architecture and roadmap docs live in **RaBbLE-Grimoire**, not in this repo — see [`RaBbLE-ScRiBbLE-Overview.md`](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-ScRiBbLE/RaBbLE-ScRiBbLE-Overview.md).
 
 For entity identity, palette, commit style, and the broader Collective — start at [RaBbLE-Grimoire](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire).
 

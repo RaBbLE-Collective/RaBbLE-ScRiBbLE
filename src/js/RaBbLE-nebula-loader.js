@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  var NEBULA_URL = window.RABBLE_NEBULA_URL || 'https://nebula.joinrabble.world/v0.0.0.1-rc.1/nebula.iife.js';
+  var NEBULA_URL = window.RABBLE_NEBULA_URL || 'https://nebula.joinrabble.world/v0.1.0/nebula.iife.js';
 
   var script = document.createElement('script');
   script.src = NEBULA_URL;

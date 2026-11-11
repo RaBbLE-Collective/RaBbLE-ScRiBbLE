@@ -14,6 +14,6 @@
     if (!window[name]) window[name] = val;
   }
 
-  set('RABBLE_AETHER_URL', 'https://aether.joinrabble.world/v0.0.0.1-rc.1/aether.min.css');
-  set('RABBLE_NEBULA_URL', 'https://nebula.joinrabble.world/v0.0.0.1-rc.1/nebula.iife.js');
+  set('RABBLE_AETHER_URL', 'https://aether.joinrabble.world/v0.1.0/aether.min.css');
+  set('RABBLE_NEBULA_URL', 'https://nebula.joinrabble.world/v0.1.0/nebula.iife.js');
 }());

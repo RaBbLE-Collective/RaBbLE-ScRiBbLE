@@ -1,56 +1,39 @@
 # RaBbLE-ScRiBbLE
 
-**Version:** `0.1.0` (Genesis, from `VERSION`) · **Live:** [scribble.joinrabble.world](https://scribble.joinrabble.world) · **Versioning:** [semver, per member](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-Versioning.md)
+A note-taking app with an infinite canvas, glowing pen ink and typed text. It is built for iPad with Apple Pencil, and works with a mouse and keyboard too. Notes stay on your device (IndexedDB); there is no account, server or sync yet.
 
-```
-spark ~ scribble >> ink meets glow // %SCRIBBLE_ONLINE%
-```
+**Genesis release `0.1.0`** · Live at [scribble.joinrabble.world](https://scribble.joinrabble.world)
 
-Neon note-taking PWA — infinite canvas, glow-pen ink + typed text. Built for iPad + Apple Pencil first, usable with mouse/keyboard too. No bundler, no framework, no build step.
+## Quickstart
 
----
-
-## What This Is
-
-RaBbLE-ScRiBbLE is a thin, no-bundler static PWA — same shape as RaBbLE-World — deployed via Cloudflare Workers. It's where thought gets captured raw, by hand, before it's shaped into anything else. v1 is local-only (IndexedDB): no server, no sync.
-
-Development happens on `new-horizons`. `main` is stable: it receives `release/X.Y.Z` branches by pull request and carries the `vX.Y.Z` tags. A push to either branch deploys the live site (`.github/workflows/deploy.yml`).
-
----
-
-## App Shell
-
-| File | Purpose |
-|---|---|
-| `index.html` | App shell — entry point for scribble.joinrabble.world |
-| `manifest.json` | PWA manifest |
-| `sw.js` | Service worker — offline app-shell cache |
-| `src/js/RaBbLE-canvas-engine.js` | Pointer Events capture (pressure/tilt/pointerType), pan/zoom, stroke model, undo stack |
-| `src/js/RaBbLE-render.js` | Two-layer glow renderer (flat + CSS-blur canvas) |
-| `src/js/RaBbLE-toolbar.js` | Pen/eraser/text/color-swatch/undo/clear controls |
-| `src/js/RaBbLE-text-tool.js` | Tap-to-place contentEditable text boxes |
-| `src/js/RaBbLE-store.js` | IndexedDB wrapper — single board, debounced autosave |
-
----
-
-## Documentation
-
-Architecture and roadmap docs live in **RaBbLE-Grimoire**, not in this repo — see [`RaBbLE-ScRiBbLE-Overview.md`](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-ScRiBbLE/RaBbLE-ScRiBbLE-Overview.md).
-
-For entity identity, palette, commit style, and the broader Collective — start at [RaBbLE-Grimoire](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire).
-
----
-
-## Quick Start
+It is a static page with no build step. From this folder:
 
 ```sh
-# No build step. Serve locally:
 python3 -m http.server 8080
-# → http://localhost:8080/index.html
 ```
 
----
+Open <http://localhost:8080/index.html>.
 
-```
-transcribe ~ scribble >> the hand finds the page // %SCRIBBLE_ONLINE%
-```
+## What is in it
+
+| File | What it does |
+|---|---|
+| `index.html` | The app |
+| `manifest.json`, `sw.js` | Install as an app, work offline |
+| `src/js/RaBbLE-canvas-engine.js` | Pen input (pressure, tilt), pan and zoom, strokes, undo |
+| `src/js/RaBbLE-render.js` | The glow renderer |
+| `src/js/RaBbLE-toolbar.js` | Pen, eraser, text, colours, undo, clear |
+| `src/js/RaBbLE-text-tool.js` | Tap to place a text box |
+| `src/js/RaBbLE-store.js` | Saves the board to IndexedDB |
+
+## Deploying
+
+A push to `main` or `new-horizons` deploys the live site (`.github/workflows/deploy.yml`). `main` only receives release pull requests.
+
+## More
+
+[Overview](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire/blob/main/RaBbLE-ScRiBbLE/RaBbLE-ScRiBbLE-Overview.md) · [The Collective](https://github.com/RaBbLE-Collective/RaBbLE-Grimoire)
+
+## Licence
+
+Source-available under the RaBbLE Sovereign Accord: free for personal use, commercial use by agreement. See [LICENSE](LICENSE).

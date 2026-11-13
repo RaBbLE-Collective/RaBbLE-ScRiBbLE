@@ -1,0 +1,11 @@
+# Security headers for ScRiBbLE (scribble.joinrabble.world). S333.
+# Static assets only: Cloudflare applies these at the edge, no Worker code runs.
+# CSP: add an origin here before a page loads anything new from it.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://nebula.joinrabble.world https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://aether.joinrabble.world https://fonts.googleapis.com; font-src 'self' https://aether.joinrabble.world https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
